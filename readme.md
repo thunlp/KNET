@@ -1,3 +1,7 @@
+# Note
+
+Thank you for your interest at our work. This repo contains the code which we use ourselves (and probably difficult to use for other people). We will, however, try our best to make it into a friendly version and update it as soon as possible. The dataset will also be published soon.
+
 # How to use our code for KFET
 
 Our codes are divided into three parts: Training, Testing and Manual_Test, and they are put into corresponding folders. Testing is carried on `WIKI-AUTO` set and Manual_Test is carreid on `WIKI-MAN` set.
