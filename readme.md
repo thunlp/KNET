@@ -1,3 +1,9 @@
+# Neural Entity Typing with Knowledge Attention
+
+This repo contains the source code and dataset for the following paper:
+
+*   Ji Xin, Yankai Lin, Zhiyuan Liu, Maosong Sun. Improving Neural Fine-Grained Entity Typing with Knowledge Attention. *The 32th AAAI Conference on Artificial Intelligence (AAAI 2018)*.
+
 # Note
 
 Thank you for your interest at our work. This repo contains the code which we use ourselves (and probably difficult to use for other people). We will, however, try our best to make it into a friendly version and update it as soon as possible. The dataset will also be published soon.
