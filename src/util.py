@@ -1,6 +1,7 @@
 import numpy as np
 
 
+
 def guess(y, y_, type_size, sess, fd, ctb, th=0.5):
     showy = sess.run(y, feed_dict=fd)
     showy_ = fd[y_]
@@ -94,9 +95,9 @@ def test(w2v, model, _entity, _context, _label, _fbid, _embedding, \
     recall = true_pos / true_neg
     print(version)
     print('strict: %f' %(strict/effect))
-    print('loose-macro: %f %f %f' \
+    print('loose-macro (precision recall f1): %f %f %f' \
         %(lma_p/effect, lma_r/effect, (2*lma_p*lma_r)/(lma_p+lma_r)/effect))
-    print('loose-micro: %f %f %f\n\n' \
+    print('loose-micro (precision recall f1): %f %f %f\n\n' \
         %(precision, recall, (precision*recall*2)/(precision+recall)))
 
 
@@ -120,7 +121,6 @@ def build_vocab(wvfile, word_size):
             vocab += 1
             
             if word=='unk':
-                print('unk found!')
                 print('vocabulary size: %d' %vocab)
                 unk = w2v['unk']
                 break
@@ -147,3 +147,7 @@ def build_disamb(disamb_file):
             else:
                 disamb[head].append(int(s[1:]))
     return disamb
+
+
+def printlog(s):
+    print("[INFO]  "+s)
