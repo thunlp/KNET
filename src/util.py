@@ -30,7 +30,6 @@ def guess(y, y_, type_size, sess, fd, ctb, th=0.5):
             lma_p += tp/fp
             if tn!=0:
                 lma_r += tp/tn
-        
     
     #loose micro
     table = np.transpose(np.tile(ctb, [type_size, 1]))
@@ -42,8 +41,8 @@ def guess(y, y_, type_size, sess, fd, ctb, th=0.5):
     return (float(strict), lma_p, lma_r, true_pos, false_pos, true_neg, effect)
 
 
-
-def test(w2v, model, _entity, _context, _label, _fbid, _embedding, _link, batch_size, sess, version):
+def test(w2v, model, _entity, _context, _label, _fbid, _embedding, \
+    _link, batch_size, sess, version):
     true_pos = 0
     false_pos = 0
     true_neg = 0    
@@ -76,11 +75,10 @@ def test(w2v, model, _entity, _context, _label, _fbid, _embedding, _link, batch_
             t = 54
         if t>-1:            
             for j in range(batch_size):         
-                if test_label[i*batch_size+j][t]==1:
+                if _label[i*batch_size+j][t]==1:
                     table[j] = 1
                     
         fdt[model.kprob] = 1.0
-        
         
         result = guess(model.t, model.t_, model.type_size, sess, fdt, table)
         
@@ -91,16 +89,15 @@ def test(w2v, model, _entity, _context, _label, _fbid, _embedding, _link, batch_
         false_pos += result[4]
         true_neg += result[5]
         effect += result[6]
-        
-                    
 
     precision = true_pos / false_pos
     recall = true_pos / true_neg
     print(version)
     print('strict: %f' %(strict/effect))
-    print('loose-macro: %f %f %f'   %(lma_p/effect, lma_r/effect, (2*lma_p*lma_r)/(lma_p+lma_r)/effect))
-    print('loose-micro: %f %f %f\n\n' %(precision, recall, (precision*recall*2)/(precision+recall)))
-
+    print('loose-macro: %f %f %f' \
+        %(lma_p/effect, lma_r/effect, (2*lma_p*lma_r)/(lma_p+lma_r)/effect))
+    print('loose-micro: %f %f %f\n\n' \
+        %(precision, recall, (precision*recall*2)/(precision+recall)))
 
 
 def build_vocab(wvfile, word_size):
@@ -130,12 +127,12 @@ def build_vocab(wvfile, word_size):
     return w2v
 
 
-
 def dic(w2v, s):
     if s in w2v:
         return w2v[s]
     else:
         return w2v['unk']
+
 
 def build_disamb(disamb_file):
     disamb = {}

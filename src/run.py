@@ -34,16 +34,20 @@ linktest = np.load(datadir+'/linktest.npy')
 
 # build model
 sess = tf.Session()
-model = model.SA("SA")
+model = model.MA("MA")
 
 w2v = util.build_vocab(wv_file, model.word_size)
 sess.run(model.initializer)
-model.saver.restore(sess, "parameter/sa/model")
-# Now = 0
-# fd = model.fdict(w2v, Now, batch_size, 1, \
-#     test_entity, test_context, test_label, test_fbid, embedding, False)
-# fd[model.kprob] = 0.5
+
+# model.saver.restore(sess, "parameter/ka/model")
+
+Now = 0
+fd = model.fdict(w2v, Now, batch_size, 1, \
+    test_entity, test_context, test_label, test_fbid, embedding, False)
+fd[model.kprob] = 0.5
+sess.run(model.train, feed_dict=fd)
 # sess.run(model.train1, feed_dict=fd)
 # sess.run(model.train2, feed_dict=fd)
+
 util.test(w2v, model, test_entity, test_context, test_label, test_fbid, embedding, \
     linktest, batch_size, sess, "all")
