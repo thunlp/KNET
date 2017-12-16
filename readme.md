@@ -18,9 +18,9 @@ All the codes are tested under Ubuntu 16.04.
 
 Data files should be put in the `data/` folder.
 
-*   `disamb_file`, containing information for disambiguation, is already in `data/`.
-*   Train, valid and test set data can be downloaded from `somewhere`.
-*   For the word vector file, we recommend using Glove from http://nlp.stanford.edu/data/glove.840B.300d.zip .
+*   `disamb_file`, containing information for disambiguation, is already in `data/`. Please unzip it.
+*   Train, valid and test set data are also in `data/`. Please unzip them.
+*   For the word vector file, we recommend using Glove from http://nlp.stanford.edu/data/glove.840B.300d.zip . Please download, unzip, and put it in `data/`.
 
 ### Parameters
 
