@@ -21,6 +21,7 @@ Data files should be put in the `data/` folder.
 *   `disamb_file`, containing information for disambiguation, is already in `data/`. Please unzip it.
 *   Train, valid and test set data are also in `data/`. Please unzip them.
 *   For the word vector file, we recommend using Glove from http://nlp.stanford.edu/data/glove.840B.300d.zip . Please download, unzip, and put it in `data/`.
+*   `types` records all they types in the taxonomy (only for recording; not used in the code).
 
 ### Parameters
 
