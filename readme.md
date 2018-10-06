@@ -2,7 +2,7 @@
 
 This repo contains the source code and dataset for the following paper:
 
-*   Ji Xin, Yankai Lin, Zhiyuan Liu, Maosong Sun. Improving Neural Fine-Grained Entity Typing with Knowledge Attention. *The 32nd AAAI Conference on Artificial Intelligence (AAAI 2018)*.
+*   Ji Xin, Yankai Lin, Zhiyuan Liu, Maosong Sun. Improving Neural Fine-Grained Entity Typing with Knowledge Attention. *The 32nd AAAI Conference on Artificial Intelligence (AAAI 2018)* [pdf](https://ji-xin.github.io/assets/paper/aaai18.pdf).
 
 ## How to use our code for KNET
 
