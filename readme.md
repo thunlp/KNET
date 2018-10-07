@@ -11,6 +11,7 @@ This repo contains the source code and dataset for the following paper:
 *   python 2.7.6
 *   numpy >=1.13.3
 *   tensorflow 0.12.1
+    *   can be done by `pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-0.12.1-cp27-none-linux_x86_64.whl`
 
 All the codes are tested under Ubuntu 16.04.
 
