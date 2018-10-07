@@ -4,6 +4,8 @@ This repo contains the source code and dataset for the following paper:
 
 *   Ji Xin, Yankai Lin, Zhiyuan Liu, Maosong Sun. Improving Neural Fine-Grained Entity Typing with Knowledge Attention. *The 32nd AAAI Conference on Artificial Intelligence (AAAI 2018)*.
 
+
+
 ## How to use our code for KNET
 
 ### Prerequisite
@@ -33,3 +35,18 @@ Data files should be put in the `data/` folder.
 Detailed usage can be found by running `python src/run.py --help`.
 
 Quick start: simply run `./run.sh`.
+
+For training and testing, follow the example of line 5 and 6 in `run.sh`.
+
+
+
+## How to direclty use the code for typing
+
+1. Organize input data in `.npy` format. See https://github.com/thunlp/KNET/issues/1 for instructions.
+
+   Another example is in the `direct/` folder.
+
+   * every sentence occupies three lines in `raw`. The first line is the entity mention, the second is left context, the third is right context. Words are separated with spaces.
+   * run `raw2npy.py`. It's better to use the same python version with step 2 to avoid encoding issues.
+
+2. Follow the example of line 7 in `run.sh`.

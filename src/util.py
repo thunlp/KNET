@@ -42,6 +42,37 @@ def guess(y, y_, type_size, sess, fd, ctb, th=0.5):
     return (float(strict), lma_p, lma_r, true_pos, false_pos, true_neg, effect)
 
 
+def direct(w2v, sess, model, _entity, _context, _embedding):
+    ind2type = {}
+    with open('data/types') as f:
+        for line in f:
+            a = line.split()
+            ind2type[int(a[1])] = a[0]
+
+    size = np.shape(_entity)[0]
+    fdt = model.fdict(w2v, 0, size, 1,
+        _entity, _context, np.zeros([size, model.type_size]), np.ones([size]),
+        _embedding, True)
+    fdt[model.kprob] = 1.0
+    result = sess.run(model.t, feed_dict=fdt)
+
+    print("Results:\n")
+
+    for i in range(np.shape(result)[0]):
+        ans = []
+        for j in range(model.type_size):
+            if result[i, j]>0.5:
+                ans.append(j)
+        if ans==[]:
+            ans.append(np.argmax(result[i]))
+        for aa in ans:
+            print(aa),
+        print
+        for aa in ans:
+            print(ind2type[aa]),
+        print
+
+
 def test(w2v, model, _entity, _context, _label, _fbid, _embedding, \
     _link, batch_size, sess, version):
     true_pos = 0

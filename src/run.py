@@ -13,10 +13,13 @@ parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
 group.add_argument("--train", action="store_true")
 group.add_argument("--test", action="store_true")
+group.add_argument("--direct", action="store_true")
 parser.add_argument("--model", action="store", required=True,
     help="which model to use")
 parser.add_argument("--data_dir", action="store", required=True,
     help="the directory to data files")
+parser.add_argument("--direct_dir", action="store", required=False,
+    help="the directory to direct output files")
 parser.add_argument("--w2v_file", action="store", required=True,
     help="the path to the word vector file")
 parser.add_argument("--save_dir", action="store", required=True,
@@ -26,8 +29,10 @@ parser.add_argument("--load_model", action="store",
 
 args = parser.parse_args()
 training = args.train
+direct = args.direct
 modelname = args.model
 datadir = args.data_dir
+directdir = args.direct_dir
 w2vfile = args.w2v_file
 savedir = args.save_dir
 
@@ -57,6 +62,12 @@ if training:
     linkvalid = np.load(datadir+'/linkvalid.npy')
 
     train_size = len(train_entity)
+
+elif direct:
+
+    direct_entity = np.load(directdir+'/entity.npy')
+    direct_context = np.load(directdir+'/context.npy')
+
 
 else:
 
@@ -97,9 +108,13 @@ elif not training:
     raise ValueError("Must load a model for testing!")
 
 
+####### direct
+if direct:
+    util.printlog("Begin computing direct outputs")
+    util.direct(w2v, sess, model, direct_entity, direct_context, embedding)
 
 ####### train
-if training:
+elif training:
     util.printlog("Begin training")
 
     for i in range(iter_num):
