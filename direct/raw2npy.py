@@ -1,5 +1,7 @@
 import numpy as np
 
+#using window=15. If not, change all 15 and 30 below as needed
+
 entity = []
 context = []
 with open("raw", 'r') as f:
@@ -11,10 +13,10 @@ with open("raw", 'r') as f:
             entity.append(a)
             con = ["unk" for _ in range(30)]
         elif flag==1:
-            for i in range(len(a)):
-               con[2*i] = a[-i]
+            for i in range(min(15, len(a))):
+               con[2*i] = a[-i-1]
         else:
-            for i in range(len(a)):
+            for i in range(min(15, len(a))):
                 con[2*i+1] = a[i]
             context.append(con)
         flag = (flag+1) %3
